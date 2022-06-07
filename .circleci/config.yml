@@ -6,4 +6,14 @@ jobs:
       - image: cimg/openjdk:17.0.3
     steps:
       - checkout
-      - run: java -version
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "build.gradle.kts" }}
+            - v2-dependencies-
+      - run:
+          name: Build and Test
+          command: ./gradlew build test
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v2-dependencies-{{ checksum "build.gradle.kts" }}
