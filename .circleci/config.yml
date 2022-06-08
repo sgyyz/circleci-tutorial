@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  heroku: circleci/heroku@1.2.6
+
 executors:
   builder:
     docker:
@@ -42,9 +45,7 @@ jobs:
     executor: builder
     steps:
       - checkout
-      - run:
-          name: Deploy
-          command: echo "Deploy main branch to the remote!!!"
+      - heroku/deploy-via-git
 
 workflows:
   version: 2
