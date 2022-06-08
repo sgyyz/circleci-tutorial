@@ -38,6 +38,13 @@ jobs:
       - run:
           name: Test
           command: ./gradlew test
+  deploy:
+    executor: builder
+    steps:
+      - checkout
+      - run:
+          name: Deploy
+          command: echo "Deploy main branch to the remote!!!"
 
 workflows:
   version: 2
@@ -47,3 +54,10 @@ workflows:
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - main
