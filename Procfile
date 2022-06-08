@@ -1,0 +1,1 @@
+web: java -jar build/libs/circleci-tutorial-0.0.1-SNAPSHOT.jar
