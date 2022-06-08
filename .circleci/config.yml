@@ -14,7 +14,7 @@ commands:
             - v2-dependencies-{{ checksum "build.gradle.kts" }}
             - v2-dependencies-
       - run:
-          name: Build
+          name: Download dependencies
           command: ./gradlew dependencies
       - save_cache:
           paths:
